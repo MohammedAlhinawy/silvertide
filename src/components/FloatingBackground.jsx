@@ -61,9 +61,9 @@ function FloatingBackground() {
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          opacity: 0.15,
+          opacity: 0.35,
           animation: "centerPulse 5s ease-in-out infinite",
-          filter: "blur(2px) brightness(0.5)",
+          filter: "blur(1px) brightness(0.7)",
           pointerEvents: "none",
           transition: "opacity 1s ease-in-out",
         }}
