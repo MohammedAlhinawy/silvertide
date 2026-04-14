@@ -1,16 +1,24 @@
+import { useState, useEffect } from "react";
+
 function FloatingBackground() {
-  const ships = [
-    { size: 80, top: "18%", delay: "0s", duration: "38s", opacity: 0.12 },
-    { size: 55, top: "55%", delay: "12s", duration: "50s", opacity: 0.08 },
-    { size: 100, top: "35%", delay: "25s", duration: "42s", opacity: 0.07 },
-    { size: 45, top: "72%", delay: "6s", duration: "35s", opacity: 0.1 },
-    { size: 65, top: "82%", delay: "18s", duration: "46s", opacity: 0.06 },
+  const images = [
+    { src: "/images/IMG_6373.JPG", animation: "carouselLeft" },
+    { src: "/images/IMG_6374.JPG", animation: "carouselRight" },
+    { src: "/images/IMG_6375.JPG", animation: "carouselCenter" },
+    { src: "/images/IMG_6376.JPG", animation: "carouselDiagonal" },
+    { src: "/images/IMG_6377.WEBP", animation: "carouselFloat" },
+    { src: "/images/IMG_6378.WEBP", animation: "carouselLeft" },
   ];
-  const containers = [
-    { size: 36, top: "25%", delay: "5s", duration: "60s", opacity: 0.09 },
-    { size: 28, top: "65%", delay: "20s", duration: "55s", opacity: 0.07 },
-    { size: 44, top: "45%", delay: "33s", duration: "65s", opacity: 0.06 },
-  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   return (
     <div
@@ -41,40 +49,25 @@ function FloatingBackground() {
         <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120Z" fill="var(--gold)" />
       </svg>
 
-      {/* Drifting ships */}
-      {ships.map((s, i) => (
-        <div
-          key={i}
-          style={{
-            position: "absolute",
-            top: s.top,
-            left: 0,
-            fontSize: s.size,
-            opacity: s.opacity,
-            animation: `drift ${s.duration} linear ${s.delay} infinite`,
-            filter: "drop-shadow(0 0 8px rgba(201,168,76,0.3))",
-          }}
-        >
-          🚢
-        </div>
-      ))}
-
-      {/* Drifting containers */}
-      {containers.map((c, i) => (
-        <div
-          key={i}
-          style={{
-            position: "absolute",
-            top: c.top,
-            left: 0,
-            fontSize: c.size,
-            opacity: c.opacity,
-            animation: `drift2 ${c.duration} linear ${c.delay} infinite`,
-          }}
-        >
-          📦
-        </div>
-      ))}
+      {/* Animated background image - shows one at a time, covers full background */}
+      <img
+        key={currentIndex}
+        src={images[currentIndex].src}
+        alt=""
+        style={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: 0.15,
+          animation: "centerPulse 5s ease-in-out infinite",
+          filter: "blur(2px) brightness(0.5)",
+          pointerEvents: "none",
+          transition: "opacity 1s ease-in-out",
+        }}
+      />
 
       {/* Subtle grid overlay */}
       <div

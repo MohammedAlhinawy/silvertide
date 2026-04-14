@@ -194,6 +194,107 @@ body {
   }
 }
 
+/* Carousel animations for background images */
+@keyframes carouselLeft {
+  0% {
+    transform: translateX(-100%) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.15;
+  }
+  90% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateX(100vw) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes carouselRight {
+  0% {
+    transform: translateX(100vw) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.12;
+  }
+  90% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateX(-100%) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes carouselCenter {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.18;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  85% {
+    opacity: 0.18;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes carouselDiagonal {
+  0% {
+    transform: translate(-100%, -100%) scale(0.9);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  90% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: translate(100vw, 100vh) scale(1.15);
+    opacity: 0;
+  }
+}
+
+@keyframes carouselFloat {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.15;
+  }
+  25% {
+    transform: translateY(-30px) translateX(15px) scale(1.05);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-15px) translateX(-10px) scale(1.02);
+    opacity: 0.18;
+  }
+  75% {
+    transform: translateY(-40px) translateX(20px) scale(1.08);
+    opacity: 0.22;
+  }
+}
+
+@keyframes centerPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
 /* Reveal animations */
 .reveal {
   opacity: 0;
